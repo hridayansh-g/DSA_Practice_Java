@@ -1,6 +1,28 @@
 class Solution {
     public void setZeroes(int[][] matrix) {
         int row= matrix.length;
+        int col= matrix[0].length;
+
+        int[] arrRow= new int[row];
+        int[] arrCol= new int[col];
+        for(int i=0;i<row;i++){
+            for(int j=0;j<col;j++){
+                if(matrix[i][j]==0){
+                    arrRow[i]=1;
+                    arrCol[j]=1;
+                }
+            }
+        }
+
+        for(int i=0;i<row;i++){
+            for(int j=0;j<col;j++){
+                if(arrRow[i]==1 || arrCol[j]==1){
+                    matrix[i][j]=0;
+                }
+            }
+        }
+
+       /* int row= matrix.length;
         int col=matrix[0].length;
         int[][] arr= new int[row][col];
         for(int i=0; i<row;i++){
@@ -22,6 +44,6 @@ class Solution {
                     }
                 }
             }
-        }        
+        } */       
     }
 }
