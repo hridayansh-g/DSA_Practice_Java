@@ -1,7 +1,9 @@
 class Solution {
     public int majorityElement(int[] nums) {
         Arrays.sort(nums);
-        int count=0;
+        int n= nums.length;
+        return nums[n/2];
+        /*int count=0;
         int maxMaj=0;
         int temp;
         int x=-1;
@@ -20,6 +22,6 @@ class Solution {
             }
             count=0;
         }
-        return nums[xj];
+        return nums[xj]; */
     }
 }
