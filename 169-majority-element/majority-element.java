@@ -1,8 +1,26 @@
+import java.util.*;
 class Solution {
     public int majorityElement(int[] nums) {
-        Arrays.sort(nums);
+        HashMap<Integer, Integer> h1= new HashMap<>();
+        int n= nums.length;
+        for(int i=0;i<nums.length;i++){
+            if(h1.containsKey(nums[i])){
+                h1.put(nums[i], h1.get(nums[i])+1);
+                //h1 value ++
+            }
+            else{
+                h1.put(nums[i],1);
+            }
+            if(h1.get(nums[i])>(n/2)){
+                return nums[i];
+            }
+        }
+        return -1;
+        /*Arrays.sort(nums);
         int n= nums.length;
         return nums[n/2];
+*/
+
         /*int count=0;
         int maxMaj=0;
         int temp;
