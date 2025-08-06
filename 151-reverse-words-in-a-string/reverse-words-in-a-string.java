@@ -1,6 +1,6 @@
 import java.util.*;
 class Solution {
-    public String reverse(char[] c2){
+    /*public String reverse(char[] c2){
         int x=0; 
         int y=c2.length-1;
         char temp;
@@ -15,9 +15,37 @@ class Solution {
         return new String(c2);
 
 
+    } */
+    public void reverse(char[] c, int start, int end){
+        char temp;
+        while(start<end){
+            //swap(c[start], c[end])
+            temp= c[start];
+            c[start]= c[end];
+            c[end]= temp;
+            start++;
+            end--;
+        }
     }
     public String reverseWords(String s) {
-        String[] s1= s.trim().split("\\s+");
+        char[] c= s.trim().replaceAll("\\s+"," ").toCharArray();
+
+        reverse(c, 0, c.length-1);
+        int start=0;
+        for(int i=0;i<=c.length;i++){
+            if(i== c.length || c[i]==' ' ){
+                reverse(c,start, i-1);
+                start= i+1;
+               
+            }
+        }
+ 
+
+        return new String(c);
+
+
+
+       /* String[] s1= s.trim().split("\\s+");
         for(int i=0;i<s1.length;i++){
             s1[i]=reverse(s1[i].toCharArray());
         }
@@ -38,7 +66,7 @@ class Solution {
 
        String str = new String(c);
        return str;
-
+*/
         //Using Stack
       /*  String[] s1= s.trim().split("\\s+");
         StringBuilder sb= new StringBuilder();
