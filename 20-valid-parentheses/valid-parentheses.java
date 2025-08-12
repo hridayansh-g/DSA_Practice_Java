@@ -4,13 +4,9 @@ class Solution {
         char c;
         for(int i=0; i<s.length();i++){
             c= s.charAt(i);
-            if(!st.isEmpty()){
-                if((st.peek()=='(' && c==')') || (st.peek()=='{' && c=='}') || (st.peek()=='[' && c==']')){
+                if((!st.isEmpty()) && ((st.peek()=='(' && c==')') || (st.peek()=='{' && c=='}') || (st.peek()=='[' && c==']'))){
                     st.pop();
-                } else{
-                    st.push(c);
-                }
-            }
+                } 
             else{
                 st.push(c);
             }
