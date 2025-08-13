@@ -1,6 +1,22 @@
 class Solution {
     public boolean isPalindrome(int x) {
-        String s= Integer.toString(x);
+        
+        int temp=x;
+        int sum=0;
+        int y;
+        while(x>0){
+            y= x%10;
+            sum = (sum*10) +y;
+            x /= 10;
+        }
+        if(sum== temp)
+        {
+            return true;
+        }
+        return false;
+
+        // by string
+      /*  String s= Integer.toString(x);
         int i=0;
         int j=s.length()-1;
         while(i<=j){
@@ -11,6 +27,6 @@ class Solution {
             j--;
         }
         return true;
-
+    */
     }
 }
