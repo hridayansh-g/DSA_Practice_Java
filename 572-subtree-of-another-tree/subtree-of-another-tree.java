@@ -14,6 +14,8 @@
  * }
  */
 class Solution {
+     // Approach 1
+     /*
      public boolean isSubtree(TreeNode root, TreeNode subRoot) {
         String sRoot = serialize(root, new StringBuilder()).toString();
         String sSub  = serialize(subRoot, new StringBuilder()).toString();
@@ -61,10 +63,11 @@ class Solution {
         }
         return lps;
     }
+    */
 
 
-    // Approach 1
-  /*  public boolean isSubtree(TreeNode root, TreeNode subRoot) {
+   
+    public boolean isSubtree(TreeNode root, TreeNode subRoot) {
         if (subRoot == null) return true;   // empty subRoot -> always true
         if (root == null) return false;
 
@@ -77,5 +80,5 @@ class Solution {
         if (a.val != b.val) return false;
         return same(a.left, b.left) && same(a.right, b.right);
     }
-    */
+    
 }
