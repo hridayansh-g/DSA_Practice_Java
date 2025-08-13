@@ -14,7 +14,24 @@
  * }
  */
 class Solution {
+    public boolean isSymmetric(TreeNode root) {
+        if (root == null) return true;
+        Queue<TreeNode> q = new LinkedList<>();
+        q.offer(root.left);
+        q.offer(root.right);
+        while (!q.isEmpty()) {
+            TreeNode a = q.poll();
+            TreeNode b = q.poll();
+            if (a == null && b == null) continue;
+            if (a == null || b == null || a.val != b.val) return false;
+            q.offer(a.left);  q.offer(b.right);
+            q.offer(a.right); q.offer(b.left);
+        }
+        return true;
+    }
 
+    // approach 2
+    /*
      public boolean isSymmetric(TreeNode root) {
         return root == null || isMirror(root.left, root.right);
     }
@@ -24,6 +41,9 @@ class Solution {
         if (a.val != b.val) return false;
         return isMirror(a.left, b.right) && isMirror(a.right, b.left);
     }
+    */
+
+    // approach 1
   /*  public boolean isSymmetric(TreeNode root) {
         if (root == null) return true;
         TreeNode mir = mirrorClone(root);     
