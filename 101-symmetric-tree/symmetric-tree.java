@@ -14,7 +14,17 @@
  * }
  */
 class Solution {
-    public boolean isSymmetric(TreeNode root) {
+
+     public boolean isSymmetric(TreeNode root) {
+        return root == null || isMirror(root.left, root.right);
+    }
+
+    private boolean isMirror(TreeNode a, TreeNode b) {
+        if (a == null || b == null) return a == b;      
+        if (a.val != b.val) return false;
+        return isMirror(a.left, b.right) && isMirror(a.right, b.left);
+    }
+  /*  public boolean isSymmetric(TreeNode root) {
         if (root == null) return true;
         TreeNode mir = mirrorClone(root);     
         return equal(root, mir);             
@@ -32,5 +42,5 @@ class Solution {
         if (a == null || b == null) return a == b;
         if (a.val != b.val) return false;
         return equal(a.left, b.left) && equal(a.right, b.right);
-}
+} */
 }
