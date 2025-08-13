@@ -15,6 +15,13 @@
  */
 class Solution {
     public boolean isSameTree(TreeNode p, TreeNode q) {
+        if (p == null && q == null) return true;
+        if (p == null || q == null) return false;
+        if (p.val != q.val) return false;
+        return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
+    }
+    // approach 1
+  /*  public boolean isSameTree(TreeNode p, TreeNode q) {
          StringBuilder s1 = new StringBuilder();
         StringBuilder s2 = new StringBuilder();
         serialize(p, s1);
@@ -31,4 +38,5 @@ class Solution {
         serialize(node.left, sb);
         serialize(node.right, sb);
     }
+    */
 }
