@@ -10,6 +10,38 @@
  */
 import java.util.*;
 class Solution {
+     public ListNode mergeKLists(ListNode[] lists) {
+        if (lists == null || lists.length == 0) return null;
+        int n = lists.length;
+        int step = 1;
+        while (step < n) {
+            for (int i = 0; i + step < n; i += step << 1) {
+                lists[i] = mergeTwo(lists[i], lists[i + step]);
+            }
+            step <<= 1;
+        }
+        return lists[0];
+    }
+
+    // In-place merge of two sorted lists
+    private ListNode mergeTwo(ListNode a, ListNode b) {
+        if (a == null) return b;
+        if (b == null) return a;
+
+        ListNode head, tail;
+        if (a.val <= b.val) { head = tail = a; a = a.next; }
+        else               { head = tail = b; b = b.next; }
+
+        while (a != null && b != null) {
+            if (a.val <= b.val) { tail.next = a; a = a.next; }
+            else                { tail.next = b; b = b.next; }
+            tail = tail.next;
+        }
+        tail.next = (a != null) ? a : b;
+        return head;
+    }
+
+    /*
     public ListNode mergeKLists(ListNode[] lists) {
         if (lists == null || lists.length == 0) return null;
 
@@ -31,7 +63,7 @@ class Solution {
         return dummy.next;
 
         // approach 1
-       /* if (lists == null || lists.length == 0) return null;
+       if (lists == null || lists.length == 0) return null;
 
         ArrayList<Integer> vals = new ArrayList<>();
         for (ListNode head : lists) {
@@ -50,6 +82,7 @@ class Solution {
             tail = tail.next;
         }
         return dummy.next;
-        */
-    }
+        
+    } */
+    
 }
