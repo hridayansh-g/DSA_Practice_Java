@@ -14,7 +14,22 @@
  * }
  */
 class Solution {
+     private int best = Integer.MIN_VALUE;
+
     public int maxPathSum(TreeNode root) {
+        gain(root);
+        return best;
+    }
+
+    private int gain(TreeNode node) {
+        if (node == null) return 0;
+        int L = Math.max(0, gain(node.left));
+        int R = Math.max(0, gain(node.right));
+        best = Math.max(best, node.val + L + R);   
+        return node.val + Math.max(L, R);          
+    }
+// approach 1
+ /*   public int maxPathSum(TreeNode root) {
         int[] ans = {Integer.MIN_VALUE};
         visit(root, ans);
         return ans[0];
@@ -35,4 +50,5 @@ class Solution {
         int right = maxDownSlow(node.right);
         return node.val + Math.max(0, Math.max(left, right));
     }
+    */
 }
