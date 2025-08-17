@@ -16,6 +16,12 @@
 class Solution {
     public int maxDepth(TreeNode root) {
         if (root == null) return 0;
+        int L = maxDepth(root.left);
+        int R = maxDepth(root.right);
+        return 1 + Math.max(L, R);
+
+        // approach 1
+     /*   if (root == null) return 0;
         Queue<TreeNode> q = new LinkedList<>();
         q.offer(root);
         q.offer(null);              
@@ -32,5 +38,6 @@ class Solution {
             if (cur.right != null) q.offer(cur.right);
         }
         return depth;
+        */
     }
 }
