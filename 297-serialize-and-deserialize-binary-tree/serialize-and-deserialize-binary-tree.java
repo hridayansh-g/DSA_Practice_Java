@@ -9,8 +9,38 @@
  */
 public class Codec {
 
-    // Encodes a tree to a single string.
     public String serialize(TreeNode root) {
+        StringBuilder sb = new StringBuilder();
+        ser(root, sb);
+        if (sb.length() > 0) sb.setLength(sb.length() - 1);
+        return sb.toString();
+    }
+
+    private void ser(TreeNode node, StringBuilder sb) {
+        if (node == null) { sb.append("#,"); return; }
+        sb.append(node.val).append(',');
+        ser(node.left, sb);
+        ser(node.right, sb);
+    }
+
+    public TreeNode deserialize(String data) {
+        if (data == null || data.isEmpty()) return null;
+        String[] t = data.split(",");
+        int[] idx = new int[]{0};
+        return de(t, idx);
+    }
+
+    private TreeNode de(String[] t, int[] idx) {
+        String cur = t[idx[0]++];
+        if (cur.equals("#")) return null;
+        TreeNode node = new TreeNode(Integer.parseInt(cur));
+        node.left = de(t, idx);
+        node.right = de(t, idx);
+        return node;
+    }
+
+    // Encodes a tree to a single string.
+ /*   public String serialize(TreeNode root) {
         if (root == null) return "";
         StringBuilder sb = new StringBuilder();
         Queue<TreeNode> q = new LinkedList<>();
@@ -60,6 +90,7 @@ public class Codec {
         }
         return root;
     }
+    */
 }
 
 // Your Codec object will be instantiated and called as such:
