@@ -14,7 +14,24 @@
  * }
  */
 class Solution {
-    public int kthSmallest(TreeNode root, int k) {
+
+     public int kthSmallest(TreeNode root, int k) {
+        Deque<TreeNode> st = new ArrayDeque<>();
+        TreeNode cur = root;
+
+        while (cur != null || !st.isEmpty()) {
+            while (cur != null) {          
+                st.push(cur);
+                cur = cur.left;
+            }
+            cur = st.pop();                 
+            if (--k == 0) return cur.val;   
+            cur = cur.right;               
+        }
+        return -1; 
+    }
+    // approach 1
+  /*  public int kthSmallest(TreeNode root, int k) {
          List<Integer> a = new ArrayList<>();
         inorder(root, a);
         return a.get(k - 1);
@@ -26,5 +43,6 @@ class Solution {
         a.add(node.val);
         inorder(node.right, a);
     }
+    */
 
 }
