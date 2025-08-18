@@ -1,7 +1,7 @@
 import java.util.*;
 class MedianFinder {
-     private PriorityQueue<Integer> maxHeap; // lower half
-    private PriorityQueue<Integer> minHeap; // upper half
+     private PriorityQueue<Integer> maxHeap; 
+    private PriorityQueue<Integer> minHeap; 
 
     public MedianFinder() {
         maxHeap = new PriorityQueue<>(Collections.reverseOrder());
@@ -29,7 +29,7 @@ class MedianFinder {
         }
         return maxHeap.peek();
     }
-    
+
     // approach 1
    /* private final List<Integer> list;
 
