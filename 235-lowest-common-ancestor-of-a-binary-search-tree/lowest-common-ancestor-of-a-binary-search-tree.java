@@ -10,6 +10,17 @@
 
 class Solution {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        int a = p.val, b = q.val;
+        while (root != null) {
+            if (a < root.val && b < root.val) root = root.left;
+            else if (a > root.val && b > root.val) root = root.right;
+            else return root; 
+        }
+        return null; 
+    }
+
+    // approach 1
+   /* public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         List<TreeNode> a = new ArrayList<>(), b = new ArrayList<>();
         path(root, p, a);
         path(root, q, b);
@@ -30,4 +41,5 @@ class Solution {
         out.remove(out.size() - 1);
         return false;
     }
+    */
 }
