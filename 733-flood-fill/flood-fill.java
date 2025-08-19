@@ -5,6 +5,48 @@ class Solution {
         int start = image[sr][sc];
         if (start == color) return image;
 
+        int cap = m * n;
+        int[] q = new int[cap];
+        int head = 0, tail = 0;
+
+        q[tail++] = sr * n + sc;
+        image[sr][sc] = color;
+
+        while (head < tail) {
+            int idx = q[head++];
+            int r = idx / n, c = idx % n;
+
+          
+            if (r > 0 && image[r - 1][c] == start) {
+                image[r - 1][c] = color;
+                q[tail++] = (r - 1) * n + c;
+            }
+          
+            if (r + 1 < m && image[r + 1][c] == start) {
+                image[r + 1][c] = color;
+                q[tail++] = (r + 1) * n + c;
+            }
+           
+            if (c > 0 && image[r][c - 1] == start) {
+                image[r][c - 1] = color;
+                q[tail++] = r * n + (c - 1);
+            }
+         
+            if (c + 1 < n && image[r][c + 1] == start) {
+                image[r][c + 1] = color;
+                q[tail++] = r * n + (c + 1);
+            }
+        }
+        return image;
+    }
+
+
+    // approach 2
+   /* public int[][] floodFill(int[][] image, int sr, int sc, int color) {
+        int m = image.length, n = image[0].length;
+        int start = image[sr][sc];
+        if (start == color) return image;
+
         Queue<int[]> q = new ArrayDeque<>();
         q.offer(new int[]{sr, sc});
         image[sr][sc] = color;
@@ -22,6 +64,8 @@ class Solution {
         }
         return image;
     }
+    */
+
     // approach 1
    /* public int[][] floodFill(int[][] image, int sr, int sc, int color) {
         int m = image.length, n = image[0].length;
