@@ -21,7 +21,30 @@ class Node {
 import java.util.*;
 
 class Solution {
-    private Map<Node, Node> map = new HashMap<>();
+    public Node cloneGraph(Node node) {
+        if (node == null) return null;
+
+        Map<Node, Node> map = new HashMap<>();
+        Queue<Node> q = new LinkedList<>();
+
+        Node copy = new Node(node.val, new ArrayList<>());
+        map.put(node, copy);
+        q.offer(node);
+
+        while (!q.isEmpty()) {
+            Node cur = q.poll();
+            for (Node nei : cur.neighbors) {
+                if (!map.containsKey(nei)) {
+                    map.put(nei, new Node(nei.val, new ArrayList<>()));
+                    q.offer(nei);
+                }
+                map.get(cur).neighbors.add(map.get(nei));
+            }
+        }
+        return copy;
+    }
+    // approach 1
+   /* private Map<Node, Node> map = new HashMap<>();
     
     public Node cloneGraph(Node node) {
         if (node == null) return null;
@@ -35,4 +58,5 @@ class Solution {
         }
         return copy;
     }
+    */
 }
