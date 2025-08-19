@@ -1,7 +1,37 @@
 import java.util.*;
 
 class Solution { 
-     public int findCheapestPrice(int n, int[][] flights, int src, int dst, int k) {
+    public int findCheapestPrice(int n, int[][] flights, int src, int dst, int k) {
+        List<int[]>[] g = new ArrayList[n];
+        for (int i = 0; i < n; i++) g[i] = new ArrayList<>();
+        for (int[] f : flights) g[f[0]].add(new int[]{f[1], f[2]});
+
+        int[][] best = new int[n][k + 2];
+        for (int i = 0; i < n; i++) Arrays.fill(best[i], Integer.MAX_VALUE);
+
+        PriorityQueue<int[]> pq = new PriorityQueue<>(Comparator.comparingInt(a -> a[0]));
+        pq.offer(new int[]{0, src, 0}); 
+        best[src][0] = 0;
+
+        while (!pq.isEmpty()) {
+            int[] cur = pq.poll();
+            int cost = cur[0], u = cur[1], used = cur[2];
+            if (u == dst) return cost;
+            if (used == k + 1) continue;
+
+            for (int[] e : g[u]) {
+                int v = e[0], w = e[1];
+                int nc = cost + w, ns = used + 1;
+                if (nc < best[v][ns]) {
+                    best[v][ns] = nc;
+                    pq.offer(new int[]{nc, v, ns});
+                }
+            }
+        }
+        return -1;
+    }
+    // approach 2
+   /*  public int findCheapestPrice(int n, int[][] flights, int src, int dst, int k) {
         final int INF = 1_000_000_000;
         int[] dist = new int[n];
         Arrays.fill(dist, INF);
@@ -19,6 +49,8 @@ class Solution {
         }
         return dist[dst] == INF ? -1 : dist[dst];
     }
+    */
+
     // approach 1
     /*
     List<int[]>[] g;
