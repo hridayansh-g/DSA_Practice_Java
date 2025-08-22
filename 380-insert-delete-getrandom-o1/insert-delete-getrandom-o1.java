@@ -1,13 +1,15 @@
 class RandomizedSet {
- List<Integer> list;
-    Random rand;
+    List<Integer> list;
+    Random ran;
+
     public RandomizedSet() {
         list = new ArrayList<>();
-        rand = new Random();
+        ran = new Random();
     }
 
     public boolean insert(int val) {
-        if (list.contains(val)) return false;
+        if (list.contains(val))
+            return false;
         list.add(val);
         return true;
     }
@@ -17,7 +19,7 @@ class RandomizedSet {
     }
 
     public int getRandom() {
-        return list.get(rand.nextInt(list.size()));
+        return list.get(ran.nextInt(list.size()));
     }
 }
 
