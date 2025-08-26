@@ -1,5 +1,35 @@
 class Solution {
+    private int val(char c) {
+        switch (c) {
+            case 'I':
+                return 1;
+            case 'V':
+                return 5;
+            case 'X':
+                return 10;
+            case 'L':
+                return 50;
+            case 'C':
+                return 100;
+            case 'D':
+                return 500;
+            default:
+                return 1000;
+        }
+    }
+
     public int romanToInt(String s) {
+        int ans = 0;
+        for (int i = 0; i < s.length(); i++) {
+            int v = val(s.charAt(i));
+            if (i + 1 < s.length() && v < val(s.charAt(i + 1)))
+                ans -= v;
+            else
+                ans += v;
+        }
+        return ans;
+        // approach 1
+        /*
         int n = s.length(), i = 0, ans = 0;
         while (i < n) {
             if (i + 1 < n) {
@@ -52,5 +82,6 @@ class Solution {
                 ans += 1; 
         }
         return ans;
+        */
     }
 }
