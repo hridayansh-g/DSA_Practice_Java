@@ -1,8 +1,20 @@
 class Solution {
     public boolean canConstruct(String ransomNote, String magazine) {
+        int[] cnt = new int[26];
+        for (int i = 0; i < magazine.length(); i++)
+            cnt[magazine.charAt(i) - 'a']++;
+
+        for (int i = 0; i < ransomNote.length(); i++) {
+            int k = ransomNote.charAt(i) - 'a';
+            if (--cnt[k] < 0)
+                return false;
+        }
+        return true;
+        // approach 1
+        /*
         char[] mag = magazine.toCharArray();
         boolean[] used = new boolean[mag.length];
-
+        
         for (int i = 0; i < ransomNote.length(); i++) {
             char need = ransomNote.charAt(i);
             boolean found = false;
@@ -17,5 +29,6 @@ class Solution {
                 return false;
         }
         return true;
+        */
     }
 }
