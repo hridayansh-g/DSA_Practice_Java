@@ -1,7 +1,24 @@
 import java.util.*;
 
 class Solution {
+    
+
+    
     public List<List<String>> groupAnagrams(String[] strs) {
+         Map<String, List<String>> map = new HashMap<>();
+
+        for (String s : strs) {
+            int[] cnt = new int[26];
+            for (int i = 0; i < s.length(); i++) cnt[s.charAt(i) - 'a']++;
+            StringBuilder key = new StringBuilder(26 * 2);
+            for (int i = 0; i < 26; i++) {
+                key.append('#').append(cnt[i]);
+            }
+            map.computeIfAbsent(key.toString(), k -> new ArrayList<>()).add(s);
+        }
+        return new ArrayList<>(map.values());
+    // approach 1
+    /*
         int n = strs.length;
         boolean[] used = new boolean[n];
         List<List<String>> res = new ArrayList<>();
@@ -22,8 +39,11 @@ class Solution {
             res.add(group);
         }
         return res;
+        */
     }
 
+
+/*
     private boolean isAnagram(String a, String b) {
         if (a.length() != b.length())
             return false;
@@ -35,4 +55,5 @@ class Solution {
                 return false;
         return true;
     }
+    */
 }
