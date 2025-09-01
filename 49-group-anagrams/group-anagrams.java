@@ -5,17 +5,20 @@ class Solution {
 
     
     public List<List<String>> groupAnagrams(String[] strs) {
-         Map<String, List<String>> map = new HashMap<>();
+         HashMap<String, List<String>> map = new HashMap();
 
-        for (String s : strs) {
-            int[] cnt = new int[26];
-            for (int i = 0; i < s.length(); i++) cnt[s.charAt(i) - 'a']++;
-            StringBuilder key = new StringBuilder(26 * 2);
-            for (int i = 0; i < 26; i++) {
-                key.append('#').append(cnt[i]);
+        for(String s : strs) {
+            char[] arr = s.toCharArray();
+            Arrays.sort(arr);
+            String key = new String(arr);
+
+            if(!map.containsKey(key)) {
+                map.put(key, new ArrayList<>());
             }
-            map.computeIfAbsent(key.toString(), k -> new ArrayList<>()).add(s);
+
+            map.get(key).add(s);
         }
+
         return new ArrayList<>(map.values());
     // approach 1
     /*
