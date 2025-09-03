@@ -11,6 +11,43 @@
 import java.util.ArrayList;
 class Solution {
     public int[] nodesBetweenCriticalPoints(ListNode head) {
+        if(head== null || head.next== null || head.next.next == null){
+            return new int[]{-1, -1};
+        }
+
+        int prev=-1, cur=-1, nex= -1;
+        ListNode previous= head;
+        ListNode current= head.next;
+        int idx = 1;
+
+        int minDiff= Integer.MAX_VALUE;
+
+        while(current != null && current.next != null ){
+            idx++;
+            if((current.val< previous.val && current.val< current.next.val) || 
+                (current.val> previous.val && current.val> current.next.val)){
+                    if(prev == -1){
+                        prev= idx;
+                          cur= idx;
+                    }
+                    else{
+                         minDiff= Math.min(minDiff, idx- cur);
+                          cur= idx;
+                    }
+                    
+                    nex= idx;
+                }
+            current= current.next;
+            previous= previous.next;
+
+        }
+
+        if (prev == -1 || prev == nex) return new int[]{-1, -1};
+        return new int[]{minDiff, nex-prev};
+
+
+
+        /*
         if(head == null || head.next == null || head.next.next== null){
             return new int[]{-1,-1};
         }
@@ -47,6 +84,7 @@ class Solution {
             minDiff= Math.min(minDiff, (a.get(i+1) - a.get(i)));
         }
         return new int[]{minDiff, maxDiff};
+        */
 
     }
 }
