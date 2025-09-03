@@ -1,6 +1,6 @@
 class Solution {
     public int maxProfit(int[] prices) { 
-        int buy, sell;
+    /*    int buy, sell;
         buy= prices[0];
         int maxProfit=0;
         int profit=0;
@@ -16,7 +16,8 @@ class Solution {
 
         }
 return maxProfit;
-        /*int min= prices[0];
+*/
+        int min= prices[0];
         int profit=0;
         int maxProfit=0;
         for(int i=1; i<prices.length;i++){
@@ -27,9 +28,9 @@ return maxProfit;
             }
         }
         return maxProfit;
-    */
+    
 
-        /*int min=Integer.MAX_VALUE;
+    /*    int min=Integer.MAX_VALUE;
         int minIndex=-1;
         int maxProfit=0;
         int profit=0;
@@ -43,10 +44,12 @@ return maxProfit;
             profit=prices[i]- min;
             maxProfit= Math.max(profit, maxProfit);
         }
-        return maxProfit;*/
+        return maxProfit;
 
+        */
 
-        /*int maxProfit=0;
+/*
+        int maxProfit=0;
         int profit=0;
         int i=0;
         int j=prices.length-1;
@@ -58,14 +61,16 @@ return maxProfit;
             }
             else if(prices[i]>prices[j]){
                 i++;
+                continue;
             }
             else{
                 j--;
             }
         }
-    return maxProfit;*/
+    return maxProfit;
+    */
 
-        /*int maxP=0;
+    /*    int maxP=0;
         int diff;
         for(int i=0; i<prices.length-1;i++){
             for(int j=i+1;j<prices.length;j++){
@@ -73,6 +78,7 @@ return maxProfit;
                 maxP= Math.max(maxP, diff);
             }
         }
-        return maxP;*/
+        return maxP;
+        */
     }
 }
