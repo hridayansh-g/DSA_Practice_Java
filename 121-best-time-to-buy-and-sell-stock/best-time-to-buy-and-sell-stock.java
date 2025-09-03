@@ -4,7 +4,7 @@ class Solution {
         buy= prices[0];
         int maxProfit=0;
         int profit=0;
-        for(int i=0;i<prices.length;i++){
+        for(int i=1;i<prices.length;i++){
             sell=prices[i];
             if(buy<sell){
                 profit= sell-buy;
