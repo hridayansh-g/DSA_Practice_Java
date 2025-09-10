@@ -1,87 +1,25 @@
+import java.util.*;
 class Solution {
-    private int val(char c) {
-        switch (c) {
-            case 'I':
-                return 1;
-            case 'V':
-                return 5;
-            case 'X':
-                return 10;
-            case 'L':
-                return 50;
-            case 'C':
-                return 100;
-            case 'D':
-                return 500;
-            default:
-                return 1000;
-        }
-    }
-
     public int romanToInt(String s) {
-        int ans = 0;
-        for (int i = 0; i < s.length(); i++) {
-            int v = val(s.charAt(i));
-            if (i + 1 < s.length() && v < val(s.charAt(i + 1)))
-                ans -= v;
-            else
-                ans += v;
-        }
-        return ans;
-        // approach 1
-        /*
-        int n = s.length(), i = 0, ans = 0;
-        while (i < n) {
-            if (i + 1 < n) {
-                String two = s.substring(i, i + 2);
-                if (two.equals("CM")) {
-                    ans += 900;
-                    i += 2;
-                    continue;
-                }
-                if (two.equals("CD")) {
-                    ans += 400;
-                    i += 2;
-                    continue;
-                }
-                if (two.equals("XC")) {
-                    ans += 90;
-                    i += 2;
-                    continue;
-                }
-                if (two.equals("XL")) {
-                    ans += 40;
-                    i += 2;
-                    continue;
-                }
-                if (two.equals("IX")) {
-                    ans += 9;
-                    i += 2;
-                    continue;
-                }
-                if (two.equals("IV")) {
-                    ans += 4;
-                    i += 2;
-                    continue;
-                }
+        HashMap<Character, Integer> map= new HashMap<>();
+        map.put('I', 1);
+        map.put('V', 5);
+        map.put('X', 10);
+        map.put('L', 50);
+        map.put('C', 100);
+        map.put('D', 500);
+        map.put('M', 1000);
+        int sum=0;
+        for(int i=0; i<s.length(); i++){
+            int curr= map.get(s.charAt(i));
+            if(i+1< s.length() && curr< map.get(s.charAt(i+1))){
+                sum -= curr;
             }
-            char c = s.charAt(i++);
-            if (c == 'M')
-                ans += 1000;
-            else if (c == 'D')
-                ans += 500;
-            else if (c == 'C')
-                ans += 100;
-            else if (c == 'L')
-                ans += 50;
-            else if (c == 'X')
-                ans += 10;
-            else if (c == 'V')
-                ans += 5;
-            else
-                ans += 1; 
+            else{
+                sum += curr;
+            }
+            
         }
-        return ans;
-        */
+        return sum;
     }
 }
