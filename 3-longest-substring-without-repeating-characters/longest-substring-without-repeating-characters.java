@@ -11,13 +11,14 @@ class Solution {
         int maxLength=0;
         int left=0;
         for(int right=0; right < s.length(); right++){
-            if(h.contains(s.charAt(right))){
+            char c= s.charAt(right);
+            if(h.contains(c)){
                 h.remove(s.charAt(left));
                 left++;
                 right--;
             }
             else{
-                h.add(s.charAt(right));
+                h.add(c);
             }
             maxLength= Math.max(maxLength, right-left+1);
         }
