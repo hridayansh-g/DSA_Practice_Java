@@ -1,41 +1,44 @@
 import java.util.*;
 class Solution {
-    public String CommonPrefix(String s1, String s2){
-      /*  if(s2.contains(s1)){
-            return s1;
-        }
-        return CommonPrefix(s1.substring(0,s1.length()-1), s2);
-        */
-        int minLength= Math.min(s1.length(), s2.length());
-        int x=-1;
+    public String longestCommonPrefix(String[] strs) {
+        if (strs == null || strs.length == 0) return "";
+        Arrays.sort(strs);
+        String first = strs[0];
+        String last = strs[strs.length - 1];
+        StringBuilder sb = new StringBuilder();
 
-        for(int i=0; i<minLength;i++){
-            if(!(s1.charAt(i)== s2.charAt(i))){
-                x=i;
+        for (int i = 0; i < first.length(); i++) {
+            if (i < last.length() && first.charAt(i) == last.charAt(i)) {
+                sb.append(first.charAt(i));
+            } else {
                 break;
             }
         }
-        if(x==-1){
-            return s1.substring(0, minLength);
-        }
+        return sb.toString();
 
-        return s1.substring(0, x);
 
-    }
-    public String longestCommonPrefix(String[] strs) {
-      
-        if(strs.length==1){
+        /*
+         if(strs.length == 1){
             return strs[0];
         }
-        String s= strs[0];
-        for(int i=1;i<strs.length;i++){
-            s= CommonPrefix(s, strs[i]);
-            if(s.isEmpty()){
+        if (strs == null || strs.length == 0){
+            return "";
+        }
+        Arrays.sort(strs);
+        StringBuilder sb= new StringBuilder();
+        String first= strs[0];
+
+       
+        for(int i=0; i<first.length(); i++){
+            if(first.charAt(i) == strs[1].charAt(i)){
+                sb.append(first.charAt(i));
+            }
+            else{
                 break;
             }
-
         }
-        
-        return s;
+        return sb.toString();
+        */
     }
-}
+
+} 
